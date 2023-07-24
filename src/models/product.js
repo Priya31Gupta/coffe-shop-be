@@ -4,7 +4,9 @@ const productSchema = new mongoose.Schema({
     name:{ type: String, require: true },
     price:{type: String, require: true },
     description:{type: String},
-    calorieCount:{type: Number}
+    calorieCount:{type: Number},
+    total_rating:{type: String},
+    review: [{type:mongoose.Schema.Types.ObjectId,ref:'review'}]
 });
 
 module.exports=mongoose.model("product", productSchema);

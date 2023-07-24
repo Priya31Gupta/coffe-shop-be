@@ -12,9 +12,10 @@ cloudinary.config({
 const uploadImage = require('../configs/uploadImage.js')
 const passport = require('../configs/passport');
 const ProductController = require('./Controller/product.controller.js');
-const UserController = require('./Controller/user.controller.js')
-const CartController = require('./Controller/cart.controller.js')
-
+const UserController = require('./Controller/user.controller.js');
+const CartController = require('./Controller/cart.controller.js');
+const ReviewController = require('./Controller/review.controller.js');
+ 
  const app = express();
  app.use(cors());
 
@@ -71,6 +72,7 @@ app.post("/signin",signin);
 app.use('/products',ProductController);
 app.use('/user',UserController);
 app.use('/cart',CartController);
+app.use('/review',ReviewController)
 
 app.listen(process.env.PORT||4000,async ()=>{
   let data= await  connect();
