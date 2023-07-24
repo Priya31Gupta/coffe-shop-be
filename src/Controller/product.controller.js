@@ -8,8 +8,9 @@ const Review = require('../models/review.model');
 // Get Operation
 router.get('/',async(req,res)=>{
     const page = +req.query.page||1;
+    const size = +req.query.size||20;
     const offset = (page-1)*5;
-    const product = await Product.find().skip(offset).limit().lean().exec();
+    const product = await Product.find().skip(offset).limit(size).lean().exec();
     res.send(product);
 })
 
