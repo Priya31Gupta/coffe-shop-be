@@ -11,8 +11,7 @@ router.get('/',async(req,res)=>{
     const size = +req.query.size||5;
     const offset = (page-1)*5;
     const product = await Product.find().skip(offset).limit(size).lean().exec();
-    const total_pages=Math.ceil(totalUserCount/size);
-    res.send({product,total_pages});
+    res.send(product);
 })
 
 router.get('/:id',async (req,res)=>{
