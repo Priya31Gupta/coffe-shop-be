@@ -18,9 +18,20 @@ router.get('/',async(req,res)=>{
 router.get('/:id',async (req,res)=>{
     const product = await Product.findById(req.params.id).lean().exec();
     const review = await Review.find({product: req.params.id});
-    res.send({product,review})
+    const avgRating = total_rating(review)
+    res.send({product,review,avgRating})
 })
 
+const total_rating = (review) => {
+    if(review && review.length <= 0) return null;
+    var ratings = Object.values(review).map((el)=> Number(el.rating));
+    let sum = 0;
+    ratings.forEach(element => {
+        sum =+ element;
+    });
+    const total_rating = sum/review.length;
+    return total_rating.toFixed(2);
+}
 // router.get('/filter/:name',async (req,res)=>{
 //     const artist_ = await Product.find({name:req.params.name}).lean().exec();
 //     res.send({artist_,total_pages:1})
