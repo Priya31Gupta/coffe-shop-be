@@ -16,7 +16,7 @@ router.get('/',async(req,res)=>{
 
 router.get('/:id',async (req,res)=>{
     const product = await Product.findById(req.params.id).lean().exec();
-    const review = await Review.find({product: req.params.id});
+    const review = await Review.find({product: req.params.id}).populate("user_id");
     const avgRating = total_rating(review)
     res.send({product,review,avgRating})
 })
