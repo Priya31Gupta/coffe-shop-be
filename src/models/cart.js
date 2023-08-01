@@ -5,6 +5,6 @@ const albumSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
     },
-    quantity: {type: stringify, required: true}
+    quantity: {type: String, required: true}
 });
 module.exports=mongoose.model("album", albumSchema);
