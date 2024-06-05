@@ -22,7 +22,8 @@ const signup =async (req,res)=>{
 
 
         }catch(e){
-         return res.status(500).json({status:"failed",message:"Something Went Wrong"})
+            console.log({e});
+            return res.status(500).json({status:"failed",message:"Something Went Wrong"})
         }
 }
 
@@ -41,6 +42,7 @@ const signin =async (req,res)=>{
         return res.status(200).send({user,token});
     }
     catch(e){
+        console.log({e});
         return res.status(500).json({status:"failed",message:"Something Went Wrong"})
     }
   
